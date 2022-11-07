@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "github notification disabler",
+  "version": "1.0",
+
+  "description": "Hides the GitHub notification indicator after 6pm and on weekends.",
+
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.github.com/*", "http://github.com/*", "https://github.com/*"],
+      "js": ["ghnd.js"]
+    }
+  ]
+
+}
