@@ -10,7 +10,7 @@ function hideLoop(times, delay) {
 }
 
 let afterWorkingHours = hours >= 18 || hours < 9;
-let weekend = day >= 5;
+let weekend = day >= 6;
 
 
 console.log("Time", hours, " day", day);
