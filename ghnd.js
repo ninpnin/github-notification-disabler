@@ -55,12 +55,14 @@ function hideNotifications(start, end, current, day) {
 let workdayStarts = browser.storage.sync.get(['workdayStarts', 'workdayEnds']);
 //var workdayStartsTime = null;
 workdayStarts.then((res) => {
-    //workdayStartsTime = res.workdayStarts || '09:00';
+    let workdayStartsTime = res.workdayStarts || '09:00';
+    let workdayEndsTime = res.workdayEnds || '18:00';
+    console.log("workdayStartsTime", workdayStartsTime);
     console.log("workdayStarts", res.workdayStarts);
     console.log("workdayEnds", res.workdayEnds);
     let clockdatetime = getClocktime();
     let time = clockdatetime[0];
     let day = clockdatetime[1];
 
-    hideNotifications(res.workdayStarts, res.workdayEnds, time, day)
+    hideNotifications(workdayStartsTime, workdayEndsTime, time, day)
 });
