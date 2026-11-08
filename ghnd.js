@@ -7,10 +7,16 @@ function getClocktime() {
     return [clockTime, day];
 }
 
+function elemIsNotification(elem) {
+    let classString = Array.from(elem.classList).join(" ");
+    return classString.toLowerCase().includes("notification");
+}
+
 function hideLoop(times, delay) {
-    let notificationClass = "styles-module_iipd_W_notificationIndicator";
-    document.getElementsByClassName(notificationClass)[0].style.display = "None";
-    //document.getElementsByTagName("notification-indicator")[0].style.display = "None";
+    let buttonClass = "prc-Button-ButtonBase-9n-Xk";
+    let buttons = Array.from(document.getElementsByClassName(buttonClass));
+    let notificationIndicator = buttons.filter(elemIsNotification)[0];
+    notificationIndicator.style.display = "None";
     if (times >= 0) {
         setTimeout(hideLoop, delay, times - 1, delay);
     }
