@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "github notification disabler",
-  "version": "1.3",
+  "version": "1.6",
   "browser_specific_settings": {
       "gecko": {
           "id": "testtesttestthing@entieda.org",

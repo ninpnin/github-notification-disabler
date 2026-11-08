@@ -3,6 +3,10 @@ function getClocktime() {
     let hours = now.getHours();
     let minutes = now.getMinutes();
     let day = now.getDay();
+    // fix US based weekday counting
+    if (day == 0) {
+        day = 7;
+    }
     let clockTime = hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0');
     return [clockTime, day];
 }
@@ -13,10 +17,16 @@ function elemIsNotification(elem) {
 }
 
 function hideLoop(times, delay) {
+    console.log("Attempt to hide the notification button...");
     let buttonClass = "prc-Button-ButtonBase-9n-Xk";
     let buttons = Array.from(document.getElementsByClassName(buttonClass));
-    let notificationIndicator = buttons.filter(elemIsNotification)[0];
-    notificationIndicator.style.display = "None";
+    let notificationIndicators = buttons.filter(elemIsNotification);
+
+    if (notificationIndicators.length >= 1) {
+        notificationIndicators[0].style.display = "None";
+    } else {
+        console.log("Nothing to hide...")
+    }
     if (times >= 0) {
         setTimeout(hideLoop, delay, times - 1, delay);
     }
@@ -32,7 +42,8 @@ function hideNotifications(start, end, current, day) {
         console.log("You should not be working at this hour for fuck's sake");
         console.log("Time", current, " day", day);
         console.log("Disable GitHub notifications...");
-        hideLoop(25, 100);
+        hideLoop(30, 15);
+        hideLoop(30, 100);
 
         window.addEventListener('load', (event) => {
           document.getElementsByTagName("notification-indicator")[0].style.display = "None";
