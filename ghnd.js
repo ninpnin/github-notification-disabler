@@ -8,7 +8,9 @@ function getClocktime() {
 }
 
 function hideLoop(times, delay) {
-    document.getElementsByTagName("notification-indicator")[0].style.display = "None";
+    let notificationClass = "styles-module_iipd_W_notificationIndicator";
+    document.getElementsByClassName(notificationClass)[0].style.display = "None";
+    //document.getElementsByTagName("notification-indicator")[0].style.display = "None";
     if (times >= 0) {
         setTimeout(hideLoop, delay, times - 1, delay);
     }
